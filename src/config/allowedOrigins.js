@@ -3,7 +3,8 @@ const allowedOrigins = [
   "https://t-client.vercel.app",
   "https://dental-care-xi.vercel.app",
   "https://new-client-roan.vercel.app",
-  "https://dental-new.vercel.app"
+  "https://dental-new.vercel.app",
+  "http://arkob.xyz",
 ];
 
 module.exports = allowedOrigins;

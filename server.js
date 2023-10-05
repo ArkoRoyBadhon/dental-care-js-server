@@ -20,7 +20,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use(cookieParser());
+app.use(cookieParser()); 
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -29,6 +29,7 @@ app.use("/auth", require("./routes/authRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/office", require("./routes/officeRoutes"));
 app.use("/service", require("./routes/serviceRoutes"));
+app.use("/appointment", require("./routes/appointmentRoute"));
 
 app.all("*", (req, res) => {
   res.status(404);

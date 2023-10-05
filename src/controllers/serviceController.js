@@ -7,8 +7,9 @@ const postService = async (req, res) => {
   res.status(200).json({
     statusCode: 200,
     success: true,
-    message: "Image Retrieved Successfully",
-    data: "result",
+    message: "Image posted Successfully",
+    // data: "result",
+    data: result
   });
 };
 

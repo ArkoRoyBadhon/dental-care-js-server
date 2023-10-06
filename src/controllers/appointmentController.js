@@ -129,6 +129,12 @@ const deleteAppointment = async (req, res) => {
   console.log(id);
   console.log(email);
 
+  const isAdmin = await User.find({
+    email: email,
+  });
+
+  console.log("isAdmin", isAdmin && isAdmin[0]?.role);
+
   const isOwner = await Appointment.find({
     _id: id,
   });
@@ -142,13 +148,21 @@ const deleteAppointment = async (req, res) => {
         message: "Appointment delete Successfully",
         data: result,
       });
+    } else if (isAdmin) {
+      const result = await Appointment.findByIdAndDelete({ _id: id });
+      res.status(200).json({
+        statusCode: 200,
+        success: true,
+        message: "Appointment delete Successfully",
+        data: "result",
+      });
     } else {
-        res.status(500).json({
-            statusCode: 500,
-            success: failed,
-            message: "Appointment deletion failed",
-            data: "result",
-          });
+      res.status(500).json({
+        statusCode: 500,
+        success: failed,
+        message: "Appointment deletion failed",
+        data: "result",
+      });
     }
   }
 };

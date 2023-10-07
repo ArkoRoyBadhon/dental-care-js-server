@@ -1,15 +1,22 @@
+const User = require("../models/User");
 const Service = require("../models/service");
 
 const postService = async (req, res) => {
-  console.log("SERVICE BODY", req.body);
-  const result = await Service.create(req.body);
+  const userData = await User.find({ email: req.body.uploadedEmail });
+
+  const dataInfo = {
+    title: req.body?.title,
+    image: req.body?.image,
+    uploadedBy: userData && userData[0]?._id,
+  };
+  const result = await Service.create(dataInfo);
 
   res.status(200).json({
     statusCode: 200,
     success: true,
     message: "Image posted Successfully",
     // data: "result",
-    data: result
+    data: result,
   });
 };
 

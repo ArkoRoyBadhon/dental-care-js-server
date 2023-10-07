@@ -1,8 +1,16 @@
 const Office = require("../models/Office");
+const User = require("../models/User");
 
 const postOfficeImages = async (req, res) => {
-  const result = await Office.create(req.body);
+  const userData = await User.find({ email: req.body.uploadedEmail });
+  
+  const dataInfo = {
+    url: req.body?.url,
+    uploadedBy: userData && userData[0]?._id,
+  };
+  const result = await Office.create(dataInfo);
 
+  console.log("result", result);
   res.status(200).json({
     statusCode: 200,
     success: true,

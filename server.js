@@ -30,6 +30,7 @@ app.use("/users", require("./routes/userRoutes"));
 app.use("/office", require("./routes/officeRoutes"));
 app.use("/service", require("./routes/serviceRoutes"));
 app.use("/appointment", require("./routes/appointmentRoute"));
+app.use("/schedule", require("./routes/phoneTimeRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);
